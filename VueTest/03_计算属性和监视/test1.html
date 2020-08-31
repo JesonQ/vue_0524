@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script type="text/javascript">
+    // Object.defineProperty()  给一个对象添加或者修改属性 属性是动态的
+
+    let obj = {
+      firstName: "A",
+      lastName: "B"
+    }
+
+    Object.defineProperty(obj, "fullName", {
+      get() {   // 调用的时机 读取属性fullName的时候
+        console.log("get()")
+        return this.firstName + "-" + this.lastName
+      },
+      set(value) {  // 嗲用时机 fullName改变了之后调用, 理解为监视fullName的变化
+        console.log("set()", value)
+        let names = value.split("-")
+        obj.firstName = names[0]
+        obj.lastName = names[1]
+      }
+    })
+
+    /* 
+      1.回调执行的时间
+      2.this是谁
+    */
+
+    // btn.addEventListener("click",function (){
+      
+    // })
+
+
+
+
+
+    // obj.fullName = obj.firstName + "-" + obj.lastName
+    // obj.firstName  = "C"
+    // obj.lastName  = "D"
+    setTimeout(() => {
+      obj.fullName = "E-F"
+      console.log(obj.firstName)  // "E"
+      console.log(obj.lastName)   // "F"
+    }, 2000);
+    console.log(obj.fullName)
+    console.log(obj.firstName)  // "A"
+    console.log(obj.lastName)   // "B"
+
+
+  </script>
+</body>
+
+</html>

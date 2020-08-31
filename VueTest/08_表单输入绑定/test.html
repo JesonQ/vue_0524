@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>08_表单输入绑定</title>
+</head>
+
+<body>
+  <!--
+1. 使用v-model(双向数据绑定)自动收集数据
+  text/textarea
+  checkbox
+  radio
+  select
+-->
+  <div id="app">
+    <form action="/xxx" @submit.prevent="submitC">
+      <span>用户名: </span>
+      <input type="text" v-model="userInfo.userName"><br>
+
+      <span>密码: </span>
+      <input type="password" v-model="userInfo.psw"><br>
+
+      <span>性别: </span>
+      <input type="radio" id="female" v-model="userInfo.sex" value="女">
+      <label for="female">女</label>
+      <input type="radio" id="male" v-model="userInfo.sex" value="男">
+      <label for="male">男</label><br>
+
+      <span>爱好: </span>
+      <input type="checkbox" id="basket" v-model="userInfo.likes" value="basket">
+      <label for="basket">篮球</label>
+      <input type="checkbox" id="foot" v-model="userInfo.likes" value="foot">
+      <label for="foot">足球</label>
+      <input type="checkbox" id="pingpang" v-model="userInfo.likes" value="pingpang">
+      <label for="pingpang">乒乓</label><br>
+
+      <span>城市: </span>
+      <select v-model="userInfo.cityID">
+        <option value="">未选择</option>
+        <option value="" v-for="(city, index) in userInfo.cities" :key="city.id" :value="city.id">
+          {{city.name}}
+        </option>
+      </select><br>
+      <span>介绍: </span>
+      <textarea rows="10" v-model="userInfo.tetxtAREA"></textarea><br><br>
+
+      <!-- <input type="submit" value="注册" @click.prevent="submitC"> -->
+      <input type="submit" value="注册" >
+    </form>
+  </div>
+
+  <script type="text/javascript" src="../js/vue.js"></script>
+  <script type="text/javascript">
+    new Vue({
+      el: "#app",
+      data() {
+        return {
+          userInfo: {
+            userName: "",
+            psw: "",
+            sex: "女",
+            likes: ["foot"],
+            cities: [
+              { id: 1, name: "巴黎" },
+              { id: 2, name: "东京" },
+              { id: 3, name: "上海" },
+            ],
+            cityID: "",
+            tetxtAREA: "",
+          }
+
+          // names:[]
+        }
+      },
+      methods: {
+        submitC() {
+          console.log("submitC()发送ajax请求",this.userInfo)
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

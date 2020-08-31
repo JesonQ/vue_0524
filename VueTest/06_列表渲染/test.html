@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>06_列表渲染</title>
+</head>
+<body>
+
+<!--
+1. 列表显示
+  数组: v-for / index
+  对象: v-for / key
+2. 列表的更新显示
+  删除item
+  替换item
+-->
+
+<div id="demo">
+  <h2>测试: v-for 遍历数组</h2>
+  <ul>
+    <li v-for="(person, index) in persons" :key="person.id">
+      {{person.id}}--
+      {{person.name}}--
+      {{person.age}}
+      --<button @click="deleteC(index)">删除</button>
+      --<button @click="updateC(index)">更新</button>
+    </li>
+  </ul>
+  <h2>测试: v-for 遍历对象</h2>
+  <ul>
+    <!-- 注意key和value的位置 -->
+    <li v-for="(value, key) in obj" :key="key">
+      {{key}}--{{value}}
+    </li>
+  </ul>
+</div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+  new Vue({
+    el:"#demo",
+    data() {
+      return {
+        persons:[  // 这种数据格式以后最常见
+          {id:1,name:"Bob",age:20},
+          {id:2,name:"Jack",age:16},
+          {id:3,name:"Lisa",age:20},
+        ],
+        obj:{
+          id:1,
+          name:"Bob",
+          age:13
+        }
+      }
+    },
+    methods: {
+      deleteC(index){
+        // this.persons[index] = ""  // 不行的,页面不更新
+        this.persons.splice(index, 1)  // splice已经不是以前我们学的那个方法了
+      },
+      updateC(index){
+        // 这是不会更新的
+        // this.persons[index] = {
+        //   id:1,
+        //   name:"Bob",
+        //   age:13
+        // }
+        this.persons[index].id = 3
+        this.persons[index].name = "Bob"
+        this.persons[index].age = 88
+        //  Object.defineProperty() 
+        /* 
+          {id:1,name:"Bob",age:{
+            title:{
+              ming:"as"
+            }
+          }},
+          在vue中,vue会将数据中的对象每个层次的属性添加 Object.defineProperty(),
+          使得监视到了对象里面属性的变化
+        */
+      }
+    },
+  })
+</script>
+</body>
+</html>

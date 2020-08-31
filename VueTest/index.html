@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script type="text/javascript">
+
+    function Person(){  // 如果将来某个地方new Person,那么Person就是当做构造函数使用
+      this.name = "guigu"  // 当前this就是Person实例化对象
+      this.play = function (){
+        console.log("play()")
+      }
+    }
+
+    let p1 = new Person()
+    let p2 = new Person()
+    let p3 = new Person()
+
+    Person.prototype.play1 = function (){  // 原型对象(prototype)身上的的方法给实例化对象用的
+      console.log("play1()")
+    }
+
+    p1.play()
+    p1.play1()
+
+
+    // let obj = {
+    //   name:"guigu",
+    //   age:8
+    // }
+  </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <p>{{msg}}</p>
+    <button-count></button-count>
+    <button-count></button-count>
+    <button-count></button-count>
+    <button-count1></button-count1>
+  </div>
+  <script type="text/javascript" src="./js/vue.js"></script>
+  <script type="text/javascript">
+    // 注册组件 第一种方式  Vue.component("组件标签名",Vue.extend({}))
+    let VueComponent = Vue.component("button-count", {  // 配置项
+      data() {  // 组件中data必须是函数
+        return {
+          count: 0
+        }
+      },
+      // 模板
+      template: "<button @click='count++'>{{count}}</button>",
+      mounted() {
+        console.log(VueComponent)
+      },
+    })
+
+    // 注册组件第二种方式
+    // 1.生成组件构造函数
+    let ButtonCount = Vue.extend({
+      data() {
+        return {
+          count: 0
+        }
+      },
+      template: "<button @click='count++'>{{count}}</button>"
+    })
+    // 2. 
+    Vue.component("button-count1", ButtonCount)
+    let vm = new Vue({
+      el: "#app",
+      data: {
+        msg:"hello"
+      }
+    })
+
+    setTimeout(() => {
+      // vm.msg = "world"
+      vm._data.msg = "world"
+    }, 2000);
+
+    // data为对象时 指向的是同一块内存地址 修改的也是同一个data 每个组件实例都应该有自己的一份data数据
+    // let option = {
+    //   data: {
+    //     count: 0
+    //   }
+    // }
+
+    // function ButtonCount() { }
+
+    // let bc1 = new ButtonCount()
+    // bc1.data = option.data
+
+    // let bc2 = new ButtonCount()
+    // bc2.data = option.data
+
+    // let option = {
+    //   data(){
+    //     return {
+    //       count: 0
+    //     }
+    //   }
+    // }
+
+    // function ButtonCount() { }
+
+    // let bc1 = new ButtonCount()
+    // bc1.data = option.data()
+
+    // let bc2 = new ButtonCount()
+    // bc2.data = option.data()
+
+    function data(){
+      return {
+        count:0
+      }
+    }
+
+    console.log(data()===data())
+
+    let obj = {
+      name:"guigu"
+    }
+
+    let p = Object.create(obj)
+    console.log(p)
+
+  </script>
+</body>
+
+</html>

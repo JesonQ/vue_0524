@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>07_事件处理</title>
+</head>
+
+<body>
+  <!--
+1. 绑定监听:
+  v-on:xxx="fun"
+  @xxx="fun"
+  @xxx="fun(参数)"
+  默认事件形参: event
+  隐含属性对象: $event
+2. 事件修饰符:
+  .prevent : 阻止事件的默认行为 event.preventDefault()
+  .stop : 停止事件冒泡 event.stopPropagation()
+3. 按键修饰符
+  .keyCode : 操作的是某个keyCode值的健
+  .enter : 操作的是enter键
+-->
+
+  <div id="app">
+
+    <h2>1. 绑定监听</h2>
+    <button v-on:click="handle1">点我一下</button>
+    <button @click="handle1">点我一下</button>
+    <button @click="handle2('guigu')">点我一下2</button>
+    <button @click="handle3('guigu',$event)">点我一下3</button>
+    <h2>2. 事件修饰符</h2>
+    <div id="out" style="width: 100px;height: 100px;background-color: red;" @click="out">
+      <div id="inner" style="width: 50px;height: 50px;background-color: green;" @click.stop="inner"></div>
+    </div>
+    <a :href="url" @click.prevent="handleC">百度一下</a>
+    <h2>3. 按键修饰符</h2>
+    <input type="text" @keyup.13="keyUpC">
+    <input type="text" @keyup.enter="keyUpC">
+  </div>
+
+  <script type="text/javascript" src="../js/vue.js"></script>
+  <script type="text/javascript">
+    Vue.config.productionTip = false
+    new Vue({
+      el: "#app",
+      data() {
+        return {
+          url: "http://www.baidu.com"
+        }
+      },
+      methods: {
+        handle1(event) {
+          console.log("handle1()", event.target.innerHTML)
+        },
+        handle2(name) {
+          console.log("handle2()", name)
+        },
+        handle3(name, event) {
+          console.log("handle2()", name, event.target.innerHTML)
+        },
+        out() {
+          console.log("out()")
+        },
+        inner(e) {
+          // e.stopPropagation();  // 停止冒泡
+          console.log("inner()")
+        },
+        handleC(e) {
+          // e.preventDefault();   // 取消默认行为
+          alert("123")
+        },
+        keyUpC(e) {
+          // if (e.keyCode === 13) {  // 判断用户的按键code
+            console.log("keyUpC()")
+          // }
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script type="text/javascript">
+
+    /* 
+      sessionStorage  关闭浏览器没有了,存储到内存中,重要数据千万不要存
+      localStorage    关闭浏览器还有,存储到本地,重要数据千万不要存
+      重要的数据存到服务器里
+    */
+    // window.sessionStorage.setItem("todoKey1","123")
+    console.log(window.sessionStorage.getItem("todoKey1"),"sessionStorage")
+
+    // let time = Date.now()
+    // window.localStorage.setItem("todoKey","123")
+    console.log(window.localStorage.getItem("todoKey"),"localStorage")
+
+  </script>
+</body>
+</html>

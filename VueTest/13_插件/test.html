@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>17_插件</title>
+</head>
+<body>
+<div id="app">
+  <p v-my-directive="msg"></p>
+</div>
+<script type="text/javascript" src="./myPlugin.js"></script>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+// 声明使用插件  用use *****
+Vue.use(MyPlugin)
+// 给构造函数Vue用的方法
+Vue.myGlobalMethod()
+let vm = new Vue({
+  el:"#app",
+  data() {
+    return {
+      msg:"hello WorLd"
+    }
+  },
+})
+// 给实例用的方法
+vm.$myMethod()
+</script>
+</body>
+</html>

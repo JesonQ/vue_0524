@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>09_Vue实例_生命周期</title>
+</head>
+<body>
+<!--
+1. vue对象的生命周期(有钩子函数)
+  1). 初始化显示
+    * beforeCreate()
+    * created()
+    * beforeMount()
+    * mounted()
+  2). 更新状态
+    * beforeUpdate()
+    * updated()
+  3). 销毁vue实例: vm.$destory()
+    * beforeDestory()
+    * destoryed()
+2. 常用的生命周期方法
+  created()/mounted(): 发送ajax请求, 启动定时器等异步任务
+  beforeDestory(): 做收尾工作, 如: 清除定时器
+-->
+
+<div id="app">
+  <button @click="destroyC">destroy</button>
+  <p v-show="ok" ref="p1">{{ok?'真':'假'}}</p>
+</div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+  let vm = new Vue({
+    el:"#app",
+    data() {
+      return {
+        ok:true
+      }
+    },
+    beforeCreate() {  // this是vm实例 
+      console.log("beforeCreate()",this,this.ok)
+    },
+    created() {  // 可以最先访问数据
+      console.log("created()",this,this.ok)
+    },
+    beforeMount() {
+      console.log("beforeMount()",this,this.ok,this.$refs.p1)
+    },
+    mounted() {  // 一般做开启定时器/发送请求等初始化工作(可以拿到页面的标签)
+      this.time = setInterval(() => {
+        console.log(111)
+        this.ok = !this.ok
+      }, 1000);
+      console.log("mounted()",this,this.ok,this.$refs.p1)
+    },
+    beforeUpdate() {  // 数据更新前(拿到的是旧数据)
+      console.log("beforeUpdate()",this.$refs.p1.innerHTML)
+    },
+    updated() {   // 拿到的是新数据
+      console.log("updated()",this.$refs.p1.innerHTML)
+    },
+    beforeDestroy() {   // this.$destroy()之后
+      // 清除定时器等收尾工作
+      clearInterval(this.time)
+      console.log("beforeDestroy()")
+    },
+    destroyed() {
+      console.log("destroyed()")
+    },
+    methods: {
+      destroyC(){
+        console.log("destroyC()")
+        this.$destroy()  // 调用此方法当前vm实例会销毁
+        console.log(this)
+      }
+    },
+  })
+
+  // setInterval(() => {
+  //   console.log(111)
+  //   console.log(vm)
+  //   vm.ok = !vm.ok
+  // }, 1000);
+</script>
+</body>
+</html>
