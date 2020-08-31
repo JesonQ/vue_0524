@@ -3,15 +3,19 @@
     <h2>效果一: 显示TODO列表时, 已完成的TODO为绿色</h2>
     <TodoList :data="todos">
       <template slot-scope="scoped">
-        <span style="color:green">
-          {{scoped}}
+        <span :style="{color:scoped.row.isComplete?'green':''}">
+          {{scoped.row.text}}
         </span>
       </template>
     </TodoList>
     <hr>
 
     <h2>效果二: 显示TODO列表时, 带序号, TODO的颜色为蓝绿搭配</h2>
-    <TodoList :data="todos"/>
+    <TodoList :data="todos">
+      <template slot-scope="{row,index}">
+        <span :style="{color:index%2===1?'green':'red'}">{{index}}--{{row.text}}</span>
+      </template>
+    </TodoList>
   </div>
 </template>
 
