@@ -5,7 +5,7 @@
     <div class="row" v-else-if="users">
       <Item v-for="user in users" :key="user.id" :user="user"></Item>
     </div>
-    <p v-else-if="error">网络错误,稍后重试!!</p>
+    <p v-show="error">网络错误,稍后重试!!</p>
   </div>
 </template>
 
@@ -30,7 +30,7 @@ export default {
       // console.log(data)
       // 发送请求
       // axios.get("https://api.github.com/search/users",{
-      axios.get("/api/search/uss2",{
+      axios.get("/api/search/users2",{
         params:{
           q:data
         }
@@ -48,7 +48,7 @@ export default {
       }).catch(error=>{
         this.loading = false
         this.error = true
-        console.log(error)
+        // console.log(error)
       })
     })
   },
