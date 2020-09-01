@@ -21,5 +21,6 @@ export default new VueRouter({
       path:"",
       redirect:"/about"
     }
-  ]
+  ],
+  linkActiveClass:"myColor"
 })
