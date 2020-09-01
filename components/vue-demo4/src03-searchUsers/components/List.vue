@@ -33,7 +33,7 @@ export default {
 
       // 发送请求
       // .then的写法
-      axios.get("https://api.github.com/search/users",{
+      axios.get("https://api.github.com/sear/users",{
       // axios.get("/api/search/users2",{  // 发请求
         params:{  // query参数
           q:data  // data用户输入的内容
@@ -58,6 +58,10 @@ export default {
         // 数据请求失败
         this.loading = false
         this.error = true
+        // setTimeout(() => {
+        //   this.error = false
+        //   this.show = true
+        // }, 2000);
         console.log(error)
       })
 

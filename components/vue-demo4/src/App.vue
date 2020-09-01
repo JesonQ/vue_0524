@@ -1,27 +1,23 @@
 <template>
   <div>
-    <div class="container">
-      <section class="jumbotron">
-        <h3 class="jumbotron-heading">Search Github Users</h3>
-        <Search></Search>
-      </section>
-      <List></List>
-    </div>
+    <el-button type="primary" @click="open1">主要按钮</el-button>
+    <el-button type="success" @click="open2">成功按钮</el-button>
   </div>
 </template>
 
 <script>
-import Search from "./components/Search";
-import List from "./components/List";
-import axios from "axios";
 export default {
   name: "App",
-  data() {
-    return {};
-  },
-  components: {
-    List,
-    Search,
+  methods: {
+    open1(){
+      this.$message("这是一条提示!!")
+    },
+    open2(){
+      this.$message({
+        message:"这是一条成功的信息!!",
+        type:"success"
+      })
+    }
   },
 };
 </script>

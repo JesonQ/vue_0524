@@ -27,9 +27,10 @@ module.exports = {
       //   },
       //   changeOrigin: true, // 支持跨域, 如果协议/主机也不相同, 必须加上
       // },
-    }
+    },
   },
   lintOnSave: false,  // 关闭ESLint的规则
+  
   configureWebpack: {
     resolve: { //引入模块的解析
       alias: {  // 配置别名,减少文件夹层数多带来的烦扰
