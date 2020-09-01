@@ -25,10 +25,10 @@ app.get("/search", function (req, res) {
     value： function () {}
 */
 app.get("/search/users", function (req, res) {
-  const {q} = req.query
+  const { q } = req.query
   axios({
     url: 'https://api.github.com/search/users',
-    params: {q}
+    params: { q }
   }).then(response => {
     res.json(response.data)
   })
@@ -41,71 +41,73 @@ app.get("/search/users", function (req, res) {
 app.get("/search/users2", function (req, res) {
   // Cors
   // res.setHeader("Access-Control-Allow-Origin", "*")
-  res.json({
-    test:"123",
-    items: [
-      {
-        login: "xpromise",
-        html_url: "https://github.com/xpromise",
-        avatar_url:
-          "https://avatars0.githubusercontent.com/u/30899542?s=460&u=6086b55c7b3643e56a1fe2fd9ebd51d3c3f5d495&v=4",
-        id: 1,
-      },
-      {
-        login: "ruanyf",
-        html_url: "https://github.com/ruanyf",
-        avatar_url: "https://avatars1.githubusercontent.com/u/2746007?s=400&v=4",
-        id: 2,
-      },
-      {
-        login: "yyx990803",
-        html_url: "https://github.com/yyx990803",
-        avatar_url:
-          "https://avatars2.githubusercontent.com/u/1376999?s=200&v=4",
-        id: 3,
-      },
-      {
-        login: "xpromise",
-        html_url: "https://github.com/xpromise",
-        avatar_url:
-          "https://avatars0.githubusercontent.com/u/30899542?s=460&u=6086b55c7b3643e56a1fe2fd9ebd51d3c3f5d495&v=4",
-        id: 4,
-      },
-      {
-        login: "ruanyf2",
-        html_url: "https://github.com/ruanyf",
-        avatar_url: "https://avatars1.githubusercontent.com/u/2746007?s=400&v=4",
-        id: 5,
-      },
-      {
-        login: "yyx9908032",
-        html_url: "https://github.com/yyx990803",
-        avatar_url:
-          "https://avatars2.githubusercontent.com/u/1376999?s=200&v=4",
-        id: 6,
-      },
-      {
-        login: "xpromise2",
-        html_url: "https://github.com/xpromise",
-        avatar_url:
-          "https://avatars0.githubusercontent.com/u/30899542?s=460&u=6086b55c7b3643e56a1fe2fd9ebd51d3c3f5d495&v=4",
-        id: 7,
-      },
-      {
-        login: "ruanyf3",
-        html_url: "https://github.com/ruanyf",
-        avatar_url: "https://avatars1.githubusercontent.com/u/2746007?s=400&v=4",
-        id: 8,
-      },
-      {
-        login: "yyx9908033",
-        html_url: "https://github.com/yyx990803",
-        avatar_url:
-          "https://avatars2.githubusercontent.com/u/1376999?s=200&v=4",
-        id: 9,
-      },
-    ],
-  });
+  setTimeout(() => {
+    res.json({
+      test: "123",
+      items: [
+        {
+          login: "xpromise",
+          html_url: "https://github.com/xpromise",
+          avatar_url:
+            "https://avatars0.githubusercontent.com/u/30899542?s=460&u=6086b55c7b3643e56a1fe2fd9ebd51d3c3f5d495&v=4",
+          id: 1,
+        },
+        {
+          login: "ruanyf",
+          html_url: "https://github.com/ruanyf",
+          avatar_url: "https://avatars1.githubusercontent.com/u/2746007?s=400&v=4",
+          id: 2,
+        },
+        {
+          login: "yyx990803",
+          html_url: "https://github.com/yyx990803",
+          avatar_url:
+            "https://avatars2.githubusercontent.com/u/1376999?s=200&v=4",
+          id: 3,
+        },
+        {
+          login: "xpromise",
+          html_url: "https://github.com/xpromise",
+          avatar_url:
+            "https://avatars0.githubusercontent.com/u/30899542?s=460&u=6086b55c7b3643e56a1fe2fd9ebd51d3c3f5d495&v=4",
+          id: 4,
+        },
+        {
+          login: "ruanyf2",
+          html_url: "https://github.com/ruanyf",
+          avatar_url: "https://avatars1.githubusercontent.com/u/2746007?s=400&v=4",
+          id: 5,
+        },
+        {
+          login: "yyx9908032",
+          html_url: "https://github.com/yyx990803",
+          avatar_url:
+            "https://avatars2.githubusercontent.com/u/1376999?s=200&v=4",
+          id: 6,
+        },
+        {
+          login: "xpromise2",
+          html_url: "https://github.com/xpromise",
+          avatar_url:
+            "https://avatars0.githubusercontent.com/u/30899542?s=460&u=6086b55c7b3643e56a1fe2fd9ebd51d3c3f5d495&v=4",
+          id: 7,
+        },
+        {
+          login: "ruanyf3",
+          html_url: "https://github.com/ruanyf",
+          avatar_url: "https://avatars1.githubusercontent.com/u/2746007?s=400&v=4",
+          id: 8,
+        },
+        {
+          login: "yyx9908033",
+          html_url: "https://github.com/yyx990803",
+          avatar_url:
+            "https://avatars2.githubusercontent.com/u/1376999?s=200&v=4",
+          id: 9,
+        },
+      ],
+    });
+  }, 2000);
 });
 
 
