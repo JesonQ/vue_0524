@@ -30,7 +30,6 @@ module.exports = {
     },
   },
   lintOnSave: false,  // 关闭ESLint的规则
-  
   configureWebpack: {
     resolve: { //引入模块的解析
       alias: {  // 配置别名,减少文件夹层数多带来的烦扰
