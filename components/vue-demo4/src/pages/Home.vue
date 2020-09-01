@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul>
+    <ul class="nav nav-tabs">
       <li>
         <router-link to="/home/news">news</router-link>
       </li>
