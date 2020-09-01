@@ -10,7 +10,8 @@ import Message from "pages/Message.vue"
 import MessageDetail from "pages/MessageDetail"
 
 export default new VueRouter({
-  mode:"hash", // 模式 带#
+  // mode:"hash", // 模式 带#
+  mode:"history", // 存在一个问题, 刷新页面会丢失css样式, 解决方式, css引入设置为绝对路径
   routes:[  // 路由规则
     {
       path:"/home",  // 访问路径

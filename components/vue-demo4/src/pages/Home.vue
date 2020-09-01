@@ -16,6 +16,12 @@
 <script>
 export default {
   name: 'Home',
+  beforeCreate() {
+    console.log("beforeCreate()")
+  },
+  beforeDestroy() {
+    console.log("beforeDestroy()")
+  },
 }
 </script>
 

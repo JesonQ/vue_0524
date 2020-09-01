@@ -1,6 +1,8 @@
 <template>
   <div>
     <ul>
+      <li>routerview传参{{msg}}</li>
+      <li>query参数{{$route.query.title1}}</li>
       <li>{{messageDetail.id}}</li>
       <li>{{messageDetail.title}}</li>
       <li>{{messageDetail.content}}</li>
@@ -16,6 +18,7 @@ let allMessage = [
 ];
 export default {
   name: "MessageDetail",
+  props:["msg"],
   data() {
     return {
       messageDetail: {},
@@ -33,7 +36,7 @@ export default {
         let id = +this.$route.params.id; // 取到的id是字符串,转换为number
         let message = allMessage.find((item) => item.id === id);
         this.messageDetail = message;
-        console.log(message);
+        // console.log(message);
       }, 1000);
     },
   },
