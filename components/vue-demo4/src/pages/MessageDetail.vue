@@ -1,24 +1,49 @@
 <template>
-  <div>MessageDetail</div>
+  <div>
+    <ul>
+      <li>{{messageDetail.id}}</li>
+      <li>{{messageDetail.title}}</li>
+      <li>{{messageDetail.content}}</li>
+    </ul>
+  </div>
 </template>
 
 <script>
 let allMessage = [
-  { id: 1, title: "message001" ,content:"message001..."},
-  { id: 2, title: "message002" ,content:"message002..."},
-  { id: 3, title: "message003" ,content:"message003..."},
+  { id: 1, title: "message001", content: "message001..." },
+  { id: 2, title: "message002", content: "message002..." },
+  { id: 3, title: "message003", content: "message003..." },
 ];
 export default {
   name: "MessageDetail",
   data() {
     return {
-      messageDetail:[]
-    }
+      messageDetail: {},
+    };
   },
   mounted() {
-    setTimeout(() => {
-      // this.messageDetail 
-    }, 1000);
+    // 当我们的组件挂在完成后,会执行一次
+    this.sendAjax()
+  },
+  methods: {
+    // 发送ajax请求
+    sendAjax() {
+      setTimeout(() => {
+        // this.messageDetail
+        let id = +this.$route.params.id; // 取到的id是字符串,转换为number
+        let message = allMessage.find((item) => item.id === id);
+        this.messageDetail = message;
+        console.log(message);
+      }, 1000);
+    },
+  },
+  watch: {
+    // 监视$route的变化,
+    $route: {
+      handler() {
+        this.sendAjax()
+      },
+    },
   },
 };
 </script>
