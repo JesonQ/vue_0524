@@ -1,26 +1,18 @@
 <template>
   <div>
-    <el-button type="primary" @click="open1">主要按钮</el-button>
-    <el-button type="success" @click="open2">成功按钮</el-button>
+    <router-link to="/about">about</router-link>
+    <router-link to="/home">home</router-link>
+    <br>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  name: "App",
-  methods: {
-    open1(){
-      this.$message("这是一条提示!!")
-    },
-    open2(){
-      this.$message({
-        message:"这是一条成功的信息!!",
-        type:"success"
-      })
-    }
-  },
-};
+  name: 'App',
+}
 </script>
 
 <style scoped>
+
 </style>
