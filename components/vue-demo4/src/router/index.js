@@ -3,10 +3,11 @@ import VueRouter from "vue-router"
 Vue.use(VueRouter)
 
 // 引入路由组件
-import Home from "../pages/Home.vue"
-import About from "../pages/About.vue"
-import News from "../pages/News.vue"
-import Message from "../pages/Message.vue"
+import Home from "pages/Home.vue"
+import About from "pages/About.vue"
+import News from "pages/News.vue"
+import Message from "pages/Message.vue"
+import MessageDetail from "pages/MessageDetail"
 
 export default new VueRouter({
   mode:"hash", // 模式 带#
@@ -21,7 +22,13 @@ export default new VueRouter({
         },
         {
           path:"message",  // 简写方式,不加 /
-          component:Message
+          component:Message,
+          children:[
+            {
+              path:"/home/message/messageDetail/:id",  // :id占位符
+              component:MessageDetail
+            }
+          ]
         },
         {
           path:"",
