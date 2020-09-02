@@ -1,38 +1,45 @@
 <template>
   <div>
-    <div class="row">
-      <div class="col-xs-offset-2 col-xs-8">
-        <div class="page-header">
-          <h2>Vue Router Demo</h2>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-2 col-xs-offset-2">
-        <div class="list-group">
-          <router-link to="/about" class="list-group-item">about</router-link>
-          <!-- <router-link to="/home" class="list-group-item">home</router-link> -->
-          <router-link :to="{path:'/home'}" class="list-group-item">home</router-link>
-        </div>
-      </div>
-      <div class="col-xs-6">
-        <div class="panel">
-          <div class="panel-body">
-            <keep-alive>
-              <router-view></router-view>
-            </keep-alive>
-          </div>
-        </div>
-      </div>
-    </div>
+    <button @click="increment">+</button>
+    <button @click="decrement">-</button>
+    <button @click="incrementIfOdd">{{count}}</button>
+    <button @click="incrementAsync">{{count}}</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: "App",
-};
+  name: 'App',
+  data() {
+    return {
+      count:0  // 数据
+    }
+  },
+  methods: {
+    increment(){
+      // count自加
+      this.count ++
+    },
+    decrement(){
+      // count自减
+      this.count --
+    },
+    incrementIfOdd(){
+      // 当count为奇数时加
+      if(this.count%2 === 1){
+        this.count ++
+      }
+    },
+    incrementAsync(){
+      // count异步加
+      setTimeout(() => {
+        this.count ++
+      }, 1000);
+    }
+  },
+}
 </script>
 
 <style scoped>
+
 </style>
