@@ -10,31 +10,27 @@
 <script>
 export default {
   name: 'App',
-  data() {
-    return {
-      count:0  // 数据
+  computed: {
+    count(){
+      return this.$store.state.count
     }
   },
   methods: {
     increment(){
       // count自加
-      this.count ++
+      this.$store.dispatch("increment")   // 分发
     },
     decrement(){
       // count自减
-      this.count --
+      this.$store.dispatch("decrement")
     },
     incrementIfOdd(){
       // 当count为奇数时加
-      if(this.count%2 === 1){
-        this.count ++
-      }
+       this.$store.dispatch("incrementIfOdd")
     },
     incrementAsync(){
       // count异步加
-      setTimeout(() => {
-        this.count ++
-      }, 1000);
+       this.$store.dispatch("incrementAsync")
     }
   },
 }
