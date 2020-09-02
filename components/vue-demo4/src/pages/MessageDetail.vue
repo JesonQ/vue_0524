@@ -3,6 +3,9 @@
     <ul>
       <li>routerview传参{{msg}}</li>
       <li>query参数{{$route.query.title1}}</li>
+      <li>props传参字符串形式{{id}}</li>
+      <li>props传参对象形式{{_name}}</li>
+      <li>props传参函数形式{{_id}}--{{_title1}}</li>
       <li>{{messageDetail.id}}</li>
       <li>{{messageDetail.title}}</li>
       <li>{{messageDetail.content}}</li>
@@ -18,7 +21,7 @@ let allMessage = [
 ];
 export default {
   name: "MessageDetail",
-  props:["msg"],
+  props:["msg","id","_name","_id","_title1"],
   data() {
     return {
       messageDetail: {},

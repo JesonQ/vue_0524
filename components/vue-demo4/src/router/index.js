@@ -28,7 +28,17 @@ export default new VueRouter({
             {
               name:"push",  // 和后面pushC方法里的name对应
               path:"/home/message/messageDetail/:id",  // :id占位符
-              component:MessageDetail
+              component:MessageDetail,
+              // props:true  // params参数可以在子组件中通过props接收
+              // props:{  // 对象形式,传递的是静态值
+              //   _name:"guigu"
+              // }
+              props(route){  // route相当于$route
+                return {
+                  _id:route.params.id,
+                  _title1:route.query.title1
+                }
+              }
             }
           ]
         },
