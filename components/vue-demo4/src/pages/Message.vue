@@ -25,9 +25,17 @@ export default {
     };
   },
   methods: {
-    pushC(id){
-      // 编程式
-      this.$router.push(`/home/message/messageDetail/${id}`)
+    pushC(id2){
+      // 编程式字符串写法
+      // this.$router.push(`/home/message/messageDetail/${id2}`)
+      // 对象的写法
+      this.$router.push({
+        name:"push",  // 对象params传参,需要一个name
+        path:"/home/message/messageDetail",
+        params:{
+          id:id2
+        }
+      })
     },
     replaceC(id){
       this.$router.replace(`/home/message/messageDetail/${id}`)

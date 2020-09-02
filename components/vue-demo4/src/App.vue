@@ -11,7 +11,8 @@
       <div class="col-xs-2 col-xs-offset-2">
         <div class="list-group">
           <router-link to="/about" class="list-group-item">about</router-link>
-          <router-link to="/home" class="list-group-item">home</router-link>
+          <!-- <router-link to="/home" class="list-group-item">home</router-link> -->
+          <router-link :to="{path:'/home'}" class="list-group-item">home</router-link>
         </div>
       </div>
       <div class="col-xs-6">

@@ -26,6 +26,7 @@ export default new VueRouter({
           component:Message,
           children:[
             {
+              name:"push",  // 和后面pushC方法里的name对应
               path:"/home/message/messageDetail/:id",  // :id占位符
               component:MessageDetail
             }
