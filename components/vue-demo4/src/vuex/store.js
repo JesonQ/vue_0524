@@ -1,53 +1,71 @@
-// 引入包
 import Vue from "vue"
 import Vuex from "vuex"
-// 声明使用插件
+
+// 引入axios
+import axios from "axios";
 Vue.use(Vuex)
 
-let state = {  // 存储初始化数据,是需要共享的数据
-  count: 0  // 数据
+let state = {
+  show: true, // 输入内容标志
+  loading: false, // loading标志
+  users: [], // 用户数据
+  error: false, // 请求错误时的提示
 }
 
-let mutations = {  // 直接修改state中的数据,都是些方法,不可以写异步操作和判断等逻辑代码(很单纯)
-  increment(state) {   //state共享数据
-    // count自加
-    state.count++
+let mutations = {
+  loading(state) {
+    state.show = false; // 提示用户输入不显示
+    state.loading = true; // loading显示
   },
-  decrement(state) {
-    // count自减
-    state.count--
-  }
-}
-
-let actions = {  // 用户操作方法,可以写异步操作和判断等逻辑代码
-  // increment(context) {
-  //   // count自加
-  //   context.commit("increment")  // 提交这个方法到mutations
-  // },
-  // decrement(context) {
-  //   // count自减
-  //   context.commit("decrement")
-  // },
-  incrementIfOdd(context) {
-    // 当count为奇数时加
-    if (context.state.count % 2 === 1) {
-      context.commit("increment")
-    }
+  getUsers(state,users) {
+    state.loading = false
+    state.users = users
   },
-  incrementAsync(context) {
-    // count异步加
-    setTimeout(() => {
-      context.commit("increment")
-    }, 1000);
+  error(state) {
+    state.loading = false
+    state.error = true
   }
 }
 
-let getters = {  // 根据state中的数据做计算
-  currentCount(state){
-    return state.count * 4
+let actions = {
+  search({ commit }, searchName) {  // commit是从context解构出来的
+    // this.show = false; // 提示用户输入不显示
+    // this.loading = true; // loading显示
+    commit("loading")
+    // 发送请求
+    axios.get("/api/search/users2", {  // 发请求
+      params: {  // query参数
+        q: searchName  // data用户输入的内容
+      }
+    })
+      .then(response => {
+        // 数据回来了(成功)
+        console.log(response.data)
+        // 接收后台返回的数据
+        let users = response.data.items.map(user => ({
+          avatar_url: user.avatar_url,
+          html_url: user.html_url,
+          id: user.id,
+          login: user.login
+        }))
+        console.log(users)
+        // 把数据赋值到data中的users
+        // this.loading = false
+        // this.users = users
+        commit("getUsers",users)
+      }).catch(error => {
+        // 数据请求失败
+        // this.loading = false
+        // this.error = true
+        commit("error")
+        console.log(error)
+      })
   }
 }
 
+let getters = {
+
+}
 export default new Vuex.Store({
   state,
   mutations,
