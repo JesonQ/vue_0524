@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script type="text/javascript" src="./eventBus.js"></script>
+  <script type="text/javascript">
+    // 定义事件
+    $bus.on("add", function (data){
+      console.log("add",data)
+    })
+    $bus.on("add", function (data){
+      console.log("add2",data)
+    })
+    $bus.on("delete", function (data){
+      console.log("delete",data)
+    })
+
+    // // 解绑事件
+    // $bus.off()
+    // $bus.off("add")
+    $bus.off(123)
+
+    // 分发事件
+    $bus.emit("add","add1")
+    $bus.emit("delete","delete1")
+
+  </script>
+</body>
+</html>
