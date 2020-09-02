@@ -20,14 +20,14 @@ let mutations = {  // 直接修改state中的数据,都是些方法,不可以写
 }
 
 let actions = {  // 用户操作方法,可以写异步操作和判断等逻辑代码
-  // increment(context) {
-  //   // count自加
-  //   context.commit("increment")  // 提交这个方法到mutations
-  // },
-  // decrement(context) {
-  //   // count自减
-  //   context.commit("decrement")
-  // },
+  increment(context) {
+    // count自加
+    context.commit("increment")  // 提交这个方法到mutations
+  },
+  decrement(context) {
+    // count自减
+    context.commit("decrement")
+  },
   incrementIfOdd(context) {
     // 当count为奇数时加
     if (context.state.count % 2 === 1) {
@@ -43,9 +43,7 @@ let actions = {  // 用户操作方法,可以写异步操作和判断等逻辑�
 }
 
 let getters = {  // 根据state中的数据做计算
-  currentCount(state){
-    return state.count * 4
-  }
+
 }
 
 export default new Vuex.Store({
